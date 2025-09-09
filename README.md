@@ -1,50 +1,70 @@
+# Monitoring Dashboard Setup
 
-******************************** Logging Monitoing Creation   ****************************
+## Prerequisites
 
-Monitoring Dashboard Creation
-Before we setup the Dashboard we need to set up the CUSTOM LOG in logging to fetch logs.
-Custom logs are logs that contain diagnostic information from custom applications.
-Unified Monitoring Agent Installation 
-For publishing the custom logs from the OKE worker nodes (or any other compute instance), it is required to have the Oracle Unified Monitoring Agent installed. 
-To Install Oracle Unified Monitoring Agent run below command.
+Before setting up the dashboard, you must configure **Custom Logs** in OCI Logging to collect diagnostic information from your custom applications.
+
+---
+
+## 1. Install Oracle Unified Monitoring Agent
+
+To publish custom logs from OKE worker nodes or other compute instances, install the Oracle Unified Monitoring Agent:
+
+```sh
 sudo yum install -y unified-monitoring-agent-ol-8-<version>.rpm
-once the installation complete we have enable and start agent service.
+```
+
+After installation, enable and start the agent service:
+
+```sh
 sudo systemctl enable unified-monitoring-agent
 sudo systemctl start unified-monitoring-agent
-Use above commands enable ad start the service.
-You can check if the agent is installed and running by executing this .
+```
+
+Verify the agent is running:
+
+```sh
 systemctl status unified-monitoring-agent
-Setting up OCI Logging for Custom Logs
-Step 1 :
-First create a new Dynamic Group or a User Group, this is to identify the hosts / compute instances where logs should be collected.
-With the help of Airtel team we can create Dynamic rules and matching rules. 
-Ensure I matching rules we need to add the hosts / compute instances / OKE cluster id. 
-All {instance.compartment.id = '<your-compartment-ocid>'} 
-Create a new log group
-Under "Logging - Log Groups" we can create a new group named "<Log group Name>”  . When you create ensure you select the correct compartment.
+```
 
-<img width="480" height="194" alt="Picture1" src="https://github.com/user-attachments/assets/fece9627-673d-404a-a5f3-ceccdb0cf155" />
+---
+
+## 2. Configure OCI Logging for Custom Logs
+
+### Step 1: Create a Dynamic Group or User Group
+
+- Create a Dynamic Group or User Group to identify the hosts or compute instances for log collection.
+- Work with your team to define dynamic and matching rules.
+- Example matching rule:
+  ```
+  All {instance.compartment.id = '<your-compartment-ocid>'}
+  ```
+
+### Step 2: Create a Log Group
+
+- In the OCI Console, go to **Logging > Log Groups**.
+- Create a new log group (e.g., `<Log group Name>`) and select the correct compartment.
+
+---
+
+## 3. Agent Configuration
+
+Agent configuration determines which custom logs are ingested from your hosts or clusters.
+
+- Specify the hosts, log inputs, and log destination settings.
+- Select the compartment to list available log groups and log names.
+- Define the input type (as set in the log group) and provide the file path for container or host server logs.
+- Submit the configuration and wait for the status to show **Active**.
+
+---
+
+## 4. Monitoring and Searching Logs
+
+- In the OCI Console, navigate to **Logging > Search**.
+- Use either **Basic** or **Advanced** mode to search and analyze log entries.
+
+---
+
+**Note:** Ensure all configuration steps are completed for successful log collection and monitoring.
 
 
-Agent Configuration :
-Agent Configuration plays a Vital role to fecth what custom logs you want ingest across your host / Cluster.
-Specify which hosts you want to collect logs from, log inputs, and log destination settings.
-
- <img width="524" height="226" alt="Picture2" src="https://github.com/user-attachments/assets/7f18d215-c0fc-43e4-ac86-1af620974b30" />
-
- <img width="524" height="220" alt="Picture3" src="https://github.com/user-attachments/assets/3d4f9c13-3d4e-4fa4-ac68-c6a3bef927da" />
-
- 
-What marked in the snippet all inputs are important to configure. If you selected the Compartment it will list out the custom log group and the log name . 
-Input types is we have already defined in the logging log-group. File path we have to given the container log paths or the Host server log path.
-Then submit the form and wait until the Agent Configuration shows status "Active".
-
-<img width="524" height="157" alt="Picture4" src="https://github.com/user-attachments/assets/26f0e179-ca30-477e-8689-e90e06f44d34" />
-
- 
-Monitoring and Searching Log Entries
-OCI Console - under "Logging - Search" you can use two modes to search for log entries - basic and advanced mode.
-
-<img width="524" height="221" alt="Picture5" src="https://github.com/user-attachments/assets/cfa22d6e-7e94-4759-8f28-ccfaab88791f" />
-
- 
