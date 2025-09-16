@@ -179,9 +179,21 @@ Use the following queries in the OCI Logging Search to monitor API usage and err
 | stats count as errorcount by 'Source URL', Status 
 | sort -errorcount
 
-****How to View Logs in Log Explorer for Prashast Production****
+
+## **How to View Logs in Log Explorer for Prashast Production**
+
 
 Follow these steps to view and analyze logs in the OCI Log Explorer for Prashast production:
+---
+
+### 1. Run the Query
+
+Open **Log Explorer** and run the following query:
+
+```sql
+'Log Source' = com.oraclecloud.logging.custom.k8 and 'Log Group' = PRASHAST_PROD_SERVER 
+| timestats count as logrecords by 'Log Source' 
+| sort -logrecords
 
 ---
 
