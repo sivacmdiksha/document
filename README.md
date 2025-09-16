@@ -179,7 +179,7 @@ Use the following queries in the OCI Logging Search to monitor API usage and err
 | stats count as errorcount by 'Source URL', Status 
 | sort -errorcount
 
-## How to View Logs in Log Explorer for Prashast Production
+****How to View Logs in Log Explorer for Prashast Production****
 
 Follow these steps to view and analyze logs in the OCI Log Explorer for Prashast production:
 
