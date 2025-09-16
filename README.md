@@ -45,6 +45,9 @@ systemctl status unified-monitoring-agent
 - In the OCI Console, go to **Logging > Log Groups**.
 - Create a new log group (e.g., `<Log group Name>`) and select the correct compartment.
 
+<img width="1000" height="403" alt="image" src="https://github.com/user-attachments/assets/399d5bf0-72bf-4ac3-a6b6-eefd35a7d1e5" />
+
+
 ---
 
 ## 3. Agent Configuration
@@ -52,9 +55,17 @@ systemctl status unified-monitoring-agent
 Agent configuration determines which custom logs are ingested from your hosts or clusters.
 
 - Specify the hosts, log inputs, and log destination settings.
+
+<img width="1090" height="469" alt="image" src="https://github.com/user-attachments/assets/982a9df9-102d-4a24-af54-1b6196d9b905" />
+
+<img width="1090" height="458" alt="image" src="https://github.com/user-attachments/assets/68c63c4d-6f34-44ff-a956-99c9147a5fa0" />
+
+- 
 - Select the compartment to list available log groups and log names.
 - Define the input type (as set in the log group) and provide the file path for container or host server logs.
 - Submit the configuration and wait for the status to show **Active**.
+
+- <img width="1090" height="326" alt="image" src="https://github.com/user-attachments/assets/5770e95d-48d3-42f1-b410-d03c19874f71" />
 
 ---
 
@@ -62,6 +73,8 @@ Agent configuration determines which custom logs are ingested from your hosts or
 
 - In the OCI Console, navigate to **Logging > Search**.
 - Use either **Basic** or **Advanced** mode to search and analyze log entries.
+- 
+<img width="1090" height="459" alt="image" src="https://github.com/user-attachments/assets/796663df-059a-4835-b450-cb8e2935e387" />
 
 ---
 
